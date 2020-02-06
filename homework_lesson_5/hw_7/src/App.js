@@ -7,7 +7,7 @@ function App() {
     <CounterBox params={[
       {
         startCount: 15,
-        stepUp: 10,
+        stepUp: 1,
         stepDown: -1,
         limitUp: 20,
         limitDown: -20

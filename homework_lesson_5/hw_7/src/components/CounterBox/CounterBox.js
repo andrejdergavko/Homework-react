@@ -9,11 +9,9 @@ class CounterBox extends Component {
         return item.startCount ? item.startCount : 0;
       })
     };
-    this.hendleChangeCount = this.hendleChangeCount.bind(this);
   }
 
-  hendleChangeCount(event) {
-    const id = event.target.parentElement.dataset.id;
+  hendleChangeCount(id, event) {
     const params = this.props.params[id];
     const action = event.target.dataset.action;
 
@@ -25,7 +23,7 @@ class CounterBox extends Component {
     const newValue =
       this.state.values[id] + (action === "increase" ? stepUp : stepDown);
 
-    if (newValue <= limitUp && newValue >= limitDown) {
+    if (this.isValueValid(newValue, limitUp, limitDown)) {
       this.setState(state => {
         state.values[id] = newValue;
         return {
@@ -35,14 +33,17 @@ class CounterBox extends Component {
     }
   }
 
+  isValueValid(value, limitUp, limitDown) {
+    return value <= limitUp && value >= limitDown
+  }
+
   render() {
     const counters = this.props.params.map((item, i) => {
       return (
         <Counter
           key={i}
-          id={i}
           value={this.state.values[i]}
-          hendleChangeCount={this.hendleChangeCount}
+          hendleChangeCount={this.hendleChangeCount.bind(this, i)}
         />
       );
     });

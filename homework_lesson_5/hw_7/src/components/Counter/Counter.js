@@ -3,7 +3,7 @@ import  './Counter.css'
 
 function Counter(props) {
   return (
-    <div className='counter' data-id={props.id}>
+    <div className='counter'>
       <button className='counter__button counter__button_increase' onClick={props.hendleChangeCount} data-action="increase">
         +
       </button>
