@@ -1,0 +1,12 @@
+.worker-creator {
+    margin-bottom: 30px;
+}
+
+.worker-creator label {
+    margin: 15px 0;
+    width: 100%;
+}
+
+.worker-creator input {
+    margin: 5px 0;
+}
