@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import nanoid from 'nanoid'
 
 import "./WorkerCreator.css";
 
@@ -8,7 +9,8 @@ class WorkerCreator extends Component {
     this.state = {
       name: "",
       position: "junior",
-      contractor: false
+      contractor: false,
+      positions: ['junior', 'middle', 'senior']
     };
 
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -27,6 +29,7 @@ class WorkerCreator extends Component {
     e.preventDefault();
 
     this.props.addWorker({
+      key: nanoid(),
       name: this.state.name,
       position: this.state.position,
       contractor: this.state.contractor
@@ -65,9 +68,9 @@ class WorkerCreator extends Component {
             value={this.state.position}
             onChange={this.handleInputChange}
           >
-            <option value="junior">junior</option>
-            <option value="middle">middle</option>
-            <option value="senior">senior</option>
+            {this.state.positions.map((item, i) => {
+              return <option key={i} value={item}>{item}</option>
+            })}
           </select>
         </label>
 
@@ -83,3 +86,6 @@ class WorkerCreator extends Component {
 }
 
 export default WorkerCreator;
+
+
+

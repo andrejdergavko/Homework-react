@@ -13,8 +13,8 @@ function WorkersTable(props) {
         </tr>
       </thead>
       <tbody>
-        {props.workers.map((item, i) => {
-          return <WorkerRow key={i} name={item.name} position={item.position} contractor={item.contractor} />;
+        {props.workers.map(item => {
+          return <WorkerRow key={item.key} name={item.name} position={item.position} contractor={item.contractor} />;
         })}
       </tbody>
     </table>
