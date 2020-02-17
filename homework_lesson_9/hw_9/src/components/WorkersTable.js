@@ -10,11 +10,25 @@ function WorkersTable(props) {
           <th>Name</th>
           <th>Position</th>
           <th>Contractor</th>
+          <th></th>
         </tr>
       </thead>
+
       <tbody>
-        {props.workers.map(item => {
-          return <WorkerRow key={item.key} name={item.name} position={item.position} contractor={item.contractor} />;
+        {props.workers.map(worker => {
+          return (
+            <WorkerRow
+              key={worker.id}
+              name={worker.name}
+              position={
+                props.positions.find(position => {
+                  return worker.position === position.value;
+                }).label
+              }
+              contractor={worker.contractor}
+              handlers={props.handlers[worker.id]}
+            />
+          );
         })}
       </tbody>
     </table>
